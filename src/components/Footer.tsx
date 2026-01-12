@@ -10,9 +10,7 @@ export default function Footer({ scrollToSection }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div>
-            <h3 className="text-2xl font-bold mb-6">
-              lovelli<span className="text-gray-500">.</span>
-            </h3>
+            <img src="/logo.png" alt="Lovelli" className="h-8 mb-6 brightness-0 invert" />
             <p className="text-gray-400 leading-relaxed">
               Crafting exceptional digital experiences that drive results and inspire audiences.
             </p>

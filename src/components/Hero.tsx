@@ -29,7 +29,7 @@ export default function Hero() {
             transform: `translateY(${scrollY * 0.3}px)`
           }}
         >
-          Framing
+          Filipino
         </h1>
         <h1
           className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-12 leading-none"
@@ -38,7 +38,7 @@ export default function Hero() {
             transform: `translateY(${scrollY * 0.3}px)`
           }}
         >
-          the future
+          Excellence
         </h1>
 
         <div

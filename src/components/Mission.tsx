@@ -5,15 +5,15 @@ export default function Mission() {
         <div className="text-center mb-16">
           <p className="text-sm text-gray-500 uppercase tracking-widest mb-4">Our Mission</p>
           <h2 className="text-5xl md:text-6xl font-bold text-black mb-8">
-            We design with
+            We empower brands with
           </h2>
 
           <div className="overflow-hidden py-4">
             <div className="animate-marquee whitespace-nowrap inline-block">
-              <span className="text-5xl md:text-7xl font-bold text-gray-300 mx-8">partnership</span>
-              <span className="text-5xl md:text-7xl font-bold text-black mx-8">intention</span>
-              <span className="text-5xl md:text-7xl font-bold text-gray-300 mx-8">partnership</span>
-              <span className="text-5xl md:text-7xl font-bold text-black mx-8">intention</span>
+              <span className="text-5xl md:text-7xl font-bold text-gray-300 mx-8">strategy</span>
+              <span className="text-5xl md:text-7xl font-bold text-black mx-8">excellence</span>
+              <span className="text-5xl md:text-7xl font-bold text-gray-300 mx-8">strategy</span>
+              <span className="text-5xl md:text-7xl font-bold text-black mx-8">excellence</span>
             </div>
           </div>
         </div>
@@ -29,16 +29,17 @@ export default function Mission() {
 
           <div>
             <h3 className="text-4xl md:text-5xl font-bold text-black mb-8 leading-tight">
-              presenting your project as an icon in the market.
+              Transforming your digital presence into measurable success.
             </h3>
             <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
               <p>
-                Art + Technology + Strategy are the pillars that sustain our relentless pursuit
-                to showcase our clients' projects at the highest level of the global market.
+                Creativity + Data + Expertise are the pillars that drive our commitment
+                to deliver exceptional digital marketing, content creation, and strategic solutions
+                that set your brand apart globally.
               </p>
               <p>
-                Regardless of historical heritage, architectural iconicity, or price range,
-                any product can stand out in the market when presented the right way.
+                We blend Filipino talent with global standards, ensuring your brand receives
+                world-class service with the agility and dedication of skilled remote professionals.
               </p>
             </div>
           </div>

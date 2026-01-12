@@ -1,40 +1,93 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../lib/supabase';
+
+interface Service {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  image: string;
+  order: number;
+  features: string[];
+}
+
+const defaultServices: Service[] = [
+  {
+    id: '1',
+    title: 'Digital Marketing',
+    slug: 'digital-marketing',
+    description: 'Strategic campaigns that drive engagement, build brand awareness, and deliver measurable results across all digital channels.',
+    image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    order: 1,
+    features: []
+  },
+  {
+    id: '2',
+    title: 'Social Media Management',
+    slug: 'social-media-management',
+    description: 'Curated content strategies and community management that transform your brand presence into a thriving digital community.',
+    image: 'https://images.pexels.com/photos/3182783/pexels-photo-3182783.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    order: 2,
+    features: []
+  },
+  {
+    id: '3',
+    title: 'Content Creation',
+    slug: 'content-creation',
+    description: 'Original, compelling content crafted to resonate with your audience and amplify your brand message across platforms.',
+    image: 'https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    order: 3,
+    features: []
+  },
+  {
+    id: '4',
+    title: 'Influencer & UGC Management',
+    slug: 'influencer-ugc-management',
+    description: 'Authentic partnerships with influencers and user-generated content strategies that amplify your reach and credibility.',
+    image: 'https://images.pexels.com/photos/3182769/pexels-photo-3182769.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    order: 4,
+    features: []
+  },
+  {
+    id: '5',
+    title: 'Creative Production & BPO',
+    slug: 'creative-production-bpo',
+    description: 'Full-service creative and business solutions delivered by skilled Filipino professionals working remotely for global excellence.',
+    image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1920',
+    order: 5,
+    features: []
+  }
+];
 
 export default function Services() {
+  const navigate = useNavigate();
   const [activeService, setActiveService] = useState(0);
+  const [services, setServices] = useState<Service[]>(defaultServices);
+  const [loading, setLoading] = useState(true);
 
-  const services = [
-    {
-      number: '01',
-      title: 'Brand Identity',
-      description: 'From concept to icon, your brand\'s journey starts here.',
-      image: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920'
-    },
-    {
-      number: '02',
-      title: 'Visual Content',
-      description: 'Every picture is a narrative waiting to be told.',
-      image: 'https://images.pexels.com/photos/3182783/pexels-photo-3182783.jpeg?auto=compress&cs=tinysrgb&w=1920'
-    },
-    {
-      number: '03',
-      title: 'Video Production',
-      description: 'From real-world shoots to boundless 3D worlds, every frame tells a story.',
-      image: 'https://images.pexels.com/photos/3945683/pexels-photo-3945683.jpeg?auto=compress&cs=tinysrgb&w=1920'
-    },
-    {
-      number: '04',
-      title: 'Digital Experience',
-      description: 'Blurring borders between reality and digital innovation.',
-      image: 'https://images.pexels.com/photos/3182769/pexels-photo-3182769.jpeg?auto=compress&cs=tinysrgb&w=1920'
-    },
-    {
-      number: '05',
-      title: 'Website Design',
-      description: 'Websites that transform ideas into measurable results.',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1920'
-    }
-  ];
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('services')
+          .select('*')
+          .order('order', { ascending: true });
+
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+          setServices(data);
+        }
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   return (
     <section id="services" className="py-32 bg-white">
@@ -67,7 +120,7 @@ export default function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="text-8xl font-bold text-gray-200 mb-4">
-              {services[activeService].number}
+              {String(activeService + 1).padStart(2, '0')}
             </div>
             <h3 className="text-4xl md:text-5xl font-bold text-black mb-6">
               {services[activeService].title}
@@ -75,7 +128,10 @@ export default function Services() {
             <p className="text-xl text-gray-600 leading-relaxed mb-8">
               {services[activeService].description}
             </p>
-            <button className="border-2 border-black text-black px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition-all">
+            <button
+              onClick={() => navigate(`/services/${services[activeService].slug}`)}
+              className="border-2 border-black text-black px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition-all"
+            >
               LEARN MORE
             </button>
           </div>
