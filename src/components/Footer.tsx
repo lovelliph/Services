@@ -1,10 +1,12 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 interface FooterProps {
   scrollToSection: (id: string) => void;
 }
 
 export default function Footer({ scrollToSection }: FooterProps) {
+  const navigate = useNavigate();
   return (
     <footer className="bg-black text-white py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -37,6 +39,11 @@ export default function Footer({ scrollToSection }: FooterProps) {
               <li>
                 <button onClick={() => scrollToSection('blog')} className="text-gray-400 hover:text-white transition-colors">
                   Blog
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigate('/apply')} className="text-gray-400 hover:text-white transition-colors">
+                  Careers
                 </button>
               </li>
             </ul>

@@ -4,6 +4,7 @@ import Services from '../components/Services';
 import Mission from '../components/Mission';
 import Testimonials from '../components/Testimonials';
 import Blog from '../components/Blog';
+import Careers from '../components/Careers';
 import Pricing from '../components/Pricing';
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <Mission />
       <Testimonials />
       <Blog />
+      <Careers />
       <Pricing />
     </>
   );

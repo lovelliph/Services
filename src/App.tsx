@@ -4,11 +4,16 @@ import { Menu, X } from 'lucide-react';
 import { AuthProvider } from './contexts/AuthContext';
 import Home from './pages/Home';
 import ServiceDetail from './pages/ServiceDetail';
+import Apply from './pages/Apply';
 import Footer from './components/Footer';
 import MobileMenu from './components/MobileMenu';
 import Login from './pages/admin/Login';
 import ForgotPassword from './pages/admin/ForgotPassword';
 import Dashboard from './pages/admin/Dashboard';
+import Services from './pages/admin/Services';
+import ServiceForm from './pages/admin/ServiceForm';
+import Projects from './pages/admin/Projects';
+import ProjectForm from './pages/admin/ProjectForm';
 import ProtectedRoute from './components/admin/ProtectedRoute';
 import AdminLayout from './components/admin/AdminLayout';
 
@@ -65,6 +70,9 @@ function Navigation() {
               <button onClick={() => scrollToSection('blog')} className="text-sm font-medium hover:text-gray-600 transition-colors">
                 BLOG
               </button>
+              <button onClick={() => navigate('/apply')} className="text-sm font-medium hover:text-gray-600 transition-colors">
+                CAREERS
+              </button>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="bg-black text-white px-6 py-2.5 text-sm font-medium hover:bg-gray-800 transition-colors"
@@ -87,6 +95,10 @@ function Navigation() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
         scrollToSection={scrollToSection}
+        onNavigateToApply={() => {
+          navigate('/apply');
+          setIsMobileMenuOpen(false);
+        }}
       />
     </>
   );
@@ -135,6 +147,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />
           <Route path="/services/:slug" element={<PublicLayout><ServiceDetail /></PublicLayout>} />
+          <Route path="/apply" element={<PublicLayout><Apply /></PublicLayout>} />
 
           <Route path="/admin/login" element={<Login />} />
           <Route path="/admin/forgot-password" element={<ForgotPassword />} />
@@ -145,6 +158,66 @@ function App() {
               <ProtectedRoute>
                 <AdminLayout>
                   <Dashboard />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/services"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <Services />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/services/new"
+            element={
+              <ProtectedRoute requiredRole="editor">
+                <AdminLayout>
+                  <ServiceForm />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/services/edit/:id"
+            element={
+              <ProtectedRoute requiredRole="editor">
+                <AdminLayout>
+                  <ServiceForm />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/projects"
+            element={
+              <ProtectedRoute>
+                <AdminLayout>
+                  <Projects />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/projects/new"
+            element={
+              <ProtectedRoute requiredRole="editor">
+                <AdminLayout>
+                  <ProjectForm />
+                </AdminLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/projects/edit/:id"
+            element={
+              <ProtectedRoute requiredRole="editor">
+                <AdminLayout>
+                  <ProjectForm />
                 </AdminLayout>
               </ProtectedRoute>
             }

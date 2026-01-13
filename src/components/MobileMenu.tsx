@@ -2,9 +2,10 @@ interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
   scrollToSection: (id: string) => void;
+  onNavigateToApply: () => void;
 }
 
-export default function MobileMenu({ isOpen, onClose, scrollToSection }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, scrollToSection, onNavigateToApply }: MobileMenuProps) {
   if (!isOpen) return null;
 
   return (
@@ -33,6 +34,12 @@ export default function MobileMenu({ isOpen, onClose, scrollToSection }: MobileM
           className="text-2xl font-medium text-white hover:text-gray-400 transition-colors"
         >
           BLOG
+        </button>
+        <button
+          onClick={onNavigateToApply}
+          className="text-2xl font-medium text-white hover:text-gray-400 transition-colors"
+        >
+          CAREERS
         </button>
         <button
           onClick={() => scrollToSection('contact')}
